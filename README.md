@@ -1,4 +1,4 @@
-# Process Mining & Management Project — Predictive Monitoring + Prescriptive Recommendations
+# Prefix-Based Predictive Monitoring and Decision-Tree Recommendations for Manufacturing Cycle-Time Outcomes
 
 This repository contains a full, reproducible pipeline for **prefix-based predictive monitoring** on a manufacturing event log (XES), plus a **decision-tree-based recommendation extraction** mechanism.
 
