@@ -1,5 +1,6 @@
 # Prefix-Based Predictive Monitoring and Decision-Tree Recommendations for Manufacturing Cycle-Time Outcomes
 
+
 This repository contains a full, reproducible pipeline for **prefix-based predictive monitoring** on a manufacturing event log (XES), plus a **decision-tree-based recommendation extraction** mechanism.
 
 At a high level, the pipeline:
@@ -7,7 +8,7 @@ At a high level, the pipeline:
 1. Loads train/test XES logs.
 2. Builds **k-prefix** case-level datasets.
 3. Encodes prefixes into **boolean activity-presence features**.
-4. Trains a **Decision Tree** (optionally tuned with cross-validation).
+4. Trains a **Decision Tree**.
 5. Evaluates prediction performance under:
 
    * the default decision rule (≈ 0.5), and
@@ -34,7 +35,7 @@ By default, the code expects these files (relative to project root):
 * `data/Production_avg_dur_training_0-80.xes`
 * `data/Production_avg_dur_testing_80-100.xes`
 
-If your filenames differ, update them in `src/config.py`.
+If filenames differ, update them in `src/config.py`.
 
 ### `results/`
 
@@ -74,11 +75,7 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-> If you don’t have a `requirements.txt` yet, you can create one (after installing packages) with:
->
-> ```bash
-> pip freeze > requirements.txt
-> ```
+
 
 ---
 
@@ -100,7 +97,7 @@ All key settings live in:
 
 * `src/config.py` (`RunConfig`)
 
-Common parameters you may want to change:
+Common parameters that may be adjusted:
 
 ### Prefix lengths
 
@@ -108,7 +105,7 @@ Common parameters you may want to change:
 k_values = [3, 5, 8, 10, 15]
 ```
 
-(You can run a single k for quick tests.)
+(For quick tests, a single `k` value can be used.)
 
 ### Thresholding policy (optional)
 
@@ -165,7 +162,7 @@ For each `k`, the console output includes:
 
 ---
 
-## Recommendation logic (what it means)
+## Recommendation logic 
 
 Recommendations are extracted **only** for prefixes predicted **SLOW** (negative outcome).
 
@@ -189,7 +186,7 @@ Reported metrics include:
 
 * `precision_recc`
 * `coverage_given_negative_pred`
-* `improvement` (a simple lift-style diagnostic)
+* `improvement` 
 
 ### Excel export (`results/`)
 
@@ -217,7 +214,7 @@ Ensure the expected files exist in `data/`, or update:
 
 ### 2) Import errors when running
 
-Make sure you run from the **project root**:
+Run from the **project root**:
 
 ```bash
 python src/main.py
@@ -225,7 +222,7 @@ python src/main.py
 
 ### 3) `.xlsx` export issues
 
-Make sure `openpyxl` is installed:
+Ensure `openpyxl` is installed:
 
 ```bash
 pip install openpyxl
@@ -238,6 +235,9 @@ pip install openpyxl
 * The decision tree uses a fixed `random_state`.
 * Cross-validation is stratified for stable PR/threshold estimation.
 
+---
 
+## Author
 
 Project developed by **Gino Biasioli**.
+
